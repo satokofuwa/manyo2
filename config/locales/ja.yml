@@ -150,6 +150,7 @@ ja:
       submit: 保存する
       update: 更新する
     link:
+      do_dedline_sort: 終了期限ソート
       do_edit: タスクを編集する
       do_create: タスク作成
       do_detail: タスク詳細
@@ -159,8 +160,11 @@ ja:
       edit: 編集
       delete: 削除
   heading:
-      title: タイトル
-      content: 内容
+      title: タイトル 
+      content: 内容 
+      expired_at: 終了期限
+      status: ステータス
+      priority: 優先度
   number:
     currency:
       format:
