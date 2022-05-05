@@ -14,6 +14,7 @@ class TasksController < ApplicationController
     elsif  params[:sort_expired].present?
       @task = Task.all.order(expired_at: :desc)
     end
+    @tasks = @tasks.page(params[:page]).per(10)
   end
 
   def new
