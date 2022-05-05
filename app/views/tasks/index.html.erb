@@ -1,22 +1,48 @@
-<h1><%= t('helpers.link.overview') %></h1>
+
+
+<nav class="navbar navbar-light bg-light">
+  <a class="navbar-brand" href="#">
+    <img src="2290855_check_document_done_list_paper_icon.png" width="30" height="30" class="d-inline-block align-top" alt="">
+     <%= t('helpers.link.overview') %>
+  </a>
+</nav>
 <p><%= notice %></p>
+  <%= form_with model: @task, url:tasks_path, scope: :task, method: :get, local: true do |form| %>
+    <%= form.text_field :search %>
+    <%= form.select :status, Task.statuses.keys.to_a, {prompt: "選択してください"},class: "status-select"%>
+    <%= form.submit 'Search',title: nil %>
+    <button type ="button" class ="btn btn-outline-primary">
+      <%= link_to t('heading.priority'), tasks_path(priority_sort: "true") %>
+    </button>
+    <button type ="button" class ="btn btn-outline-primary">
+      <%= link_to t('heading.expired_at'), tasks_path(expired_sort: "true") %>
+    </button>
+  <% end %>  
 
-
-<table>
-  <tr>
-    <th><%= t('heading.title') %></th>
-    <th><%= t('heading.content') %></th>
-  <tr>
-
-<% @tasks.each do |task| %>
-  <tr>
-    <td><%= task.title %></td>
-    <td><%= task.content %></td>
-
-    <td><%= link_to t('helpers.link.detail'),task_path(task.id) %></td>
-    <td><%= link_to t('helpers.link.new'), new_task_path %></td>
-    <td><%= link_to t('helpers.link.edit'),edit_task_path(task.id) %></td>
-    <td><%= link_to t('helpers.link.delete'), task_path(task.id), method: :delete %></td>
-  </tr>
-<% end %>
+<table class="table table-sm">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"><%= t('heading.title') %></th>
+      <th scope="col"><%= t('heading.content') %></th>
+      <th scope="col"><%= t('heading.expired_at') %></th>
+      <th scope="col"><%= t('heading.status') %></th>
+      <th scope="col"><%= t('heading.priority') %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <%@tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.expired_at %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td><%= link_to t('helpers.link.detail'), task_path(task.id), class: 'btn btn-outline-primary' %></td>
+        <td><%= link_to t('helpers.link.new'), new_task_path, class: 'btn btn-outline-primary' %></td>
+        <td><%= link_to t('helpers.link.edit'), edit_task_path(task.id), class: 'btn btn-outline-success' %></td>
+        <td><%= link_to t('helpers.link.delete'), task_path(task.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: '削除してよろしいですか？'} %></td>
+      </tr>
+      <% end %>
+  </tbody>
 </table>
+<%= paginate @tasks %>
