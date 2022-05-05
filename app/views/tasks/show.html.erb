@@ -1,3 +1,3 @@
-<h1> タスク詳細画面</h1>
-<p>タイトル: <%= @task.title %></p>
-<p>内容: <%=@task.content %></p>
+<h1><%= t('helpers.link.do_detail') %> </h1>
+<p><%= t('heading.title') %>  <%= @task.title %></p>
+<p><%= t('heading.content') %><%=@task.content %></p>

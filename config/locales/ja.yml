@@ -106,6 +106,9 @@ ja:
       day: 日
       month: 月
       year: 年
+  shared:
+      links:
+        task_back: 'タスク一覧画面に戻る'
   errors:
     format: "%{attribute}%{message}"
     messages:
@@ -133,6 +136,7 @@ ja:
       too_long: は%{count}文字以内で入力してください
       too_short: は%{count}文字以上で入力してください
       wrong_length: は%{count}文字で入力してください
+      count_errors: 件のエラーがあります
     template:
       body: 次の項目を確認してください
       header:
@@ -145,6 +149,18 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+    link:
+      do_edit: タスクを編集する
+      do_create: タスク作成
+      do_detail: タスク詳細
+      overview: タスク一覧
+      detail: 詳細
+      new: 新規作成
+      edit: 編集
+      delete: 削除
+  heading:
+      title: タイトル
+      content: 内容
   number:
     currency:
       format:
