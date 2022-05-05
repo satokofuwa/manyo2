@@ -1,3 +1,4 @@
 <h1><%= t('helpers.link.do_detail') %> </h1>
 <p><%= t('heading.title') %>  <%= @task.title %></p>
 <p><%= t('heading.content') %><%=@task.content %></p>
+<%= link_to t('shared.links.task_back'), tasks_path %>
