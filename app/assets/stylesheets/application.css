@@ -15,3 +15,27 @@
  */
 
 /* BASIC */
+.card-container {
+  max-width: 600px;
+  padding: 40px 40px;
+}
+
+.card-body {
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 100px;
+}
+
+.card-container {
+  margin: 0 auto;
+  padding: 20px 25px 30px;
+  margin: 0 auto 25px;
+  margin-top: 50px;
+  -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+  margin-top: 40px;
+}

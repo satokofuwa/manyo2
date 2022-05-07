@@ -5,6 +5,7 @@ class Task < ApplicationRecord
   belongs_to :user
 
   enum status: { "未着手": 0, "着手": 1, "完了": 2 }
+  enum priority: { "低": 0, "中": 1, "高": 2 }
 
   scope :keyword, -> (keyword) { where('title LIKE?',"%#{keyword}")}
   scope :status_select, ->(status_select) { where(status: status_select) }
