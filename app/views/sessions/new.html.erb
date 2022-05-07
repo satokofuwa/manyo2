@@ -1,4 +1,5 @@
 
+<!--ログイン画面 -->
 <%= flash[:danger] %>
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.8/css/all.css">
 <div class="container">
@@ -11,8 +12,8 @@
 	<h4 class="card-title text-center mb-4 mt-1">Sign in</h4>
 	<hr>
 	<p class="text-success text-center">タスク管理システム</p>
-	<form>
-   <%=form_with(scope: :sessions, url: sessions_path, locale: true) do |login| %>
+
+   <%= form_with(scope: :session, url: sessions_path, local: true) do |login| %>
 	<div class="form-group">
 	<div class="input-group">
 		<div class="input-group-prepend">
@@ -31,8 +32,7 @@
 	<div class="form-group">
 	<%= login.submit t('helpers.link.login')%> 
 	</div>
-	<p class="text-center"><a href="#" class="btn">Forgot password?</a></p>
-	</form>
+
    <% end %>
 </article>
 </div> <!-- card.// -->
@@ -42,7 +42,6 @@
 
 </div> 
 <!--container end.//-->
-
 <br><br><br>
 <article class="bg-secondary mb-3">  
 <div class="card-body text-center">

@@ -1,6 +1,5 @@
 class TasksController < ApplicationController
   before_action :set_task, only: %i[update show edit destroy]
-
   def index
     @tasks = Task.order(created_at: :desc)
     if params[:task].present?
@@ -22,17 +21,18 @@ class TasksController < ApplicationController
   end
   
   def create
-    @task = Task.new(task_params)
-    if @task.save
-      redirect_to tasks_path, notice:'タスクを作成しました'
+    @task = current_user.tasks.build(task_params)
+    flash[:notice] = if @task.save
+      '登録が完了しました。'
     else
-      render :new
+      'エラーが発生しました。'
     end
+redirect_to new_task_url
   end 
 
   def update 
     if @task.update(task_params)
-      redirect_to tasks_path, notice: 'タスクを更新しました'
+      redirect_to tasks_path, notice:  t('shared.update')
     else 
       render :edit 
     end

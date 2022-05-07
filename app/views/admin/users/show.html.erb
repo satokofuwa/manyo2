@@ -1,0 +1,52 @@
+
+
+  <%= link_to t('helpers.link.do_create'), new_task_path,class: 'btn btn-outline-primary btn-sm' %>
+  <%= link_to 'プロフィール編集', edit_admin_user_path(@user),class: 'btn btn-outline-primary btn-sm' %>
+
+<!-- レスポンシブ対応のために div を追加 -->
+<div class="table-responsive">
+<table class="table table">
+
+ <thead>
+      <tr>
+        <th>タスク一覧　<%= @user.name %>のページ</th>
+     
+      </tr>
+    </thead>
+    <tbody>
+  
+      <th scope="col8">Email  <%= @user.email %> 
+       権限:<%= @user.admin %></th>
+    </tr>
+    </tbody>
+</table>
+
+<table class="table table-striped">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col"><%= t('heading.title') %></th>
+      <th scope="col"><%= t('heading.content') %></th>
+      <th scope="col"><%= t('heading.expired_at') %></th>
+      <th scope="col"><%= t('heading.status') %></th>
+      <th scope="col"><%= t('heading.priority') %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @user.tasks.each do |task| %>
+      <tr>
+        <td><%= task.title %></td>
+        <td><%= task.content %></td>
+        <td><%= task.expired_at %></td>
+        <td><%= task.status %></td>
+        <td><%= task.priority %></td>
+        <td><%= link_to t('helpers.link.detail'), task_path(task.id), class: 'btn btn-outline-primary' %></td>
+        <td><%= link_to t('helpers.link.new'), new_task_path, class: 'btn btn-outline-primary' %></td>
+        <td><%= link_to t('helpers.link.edit'), edit_task_path(task.id), class: 'btn btn-outline-success',data: { confirm: '編集でよろしいですか？' } %></td>
+        <td><%= link_to t('helpers.link.delete'), task_path(task.id), method: :delete, class: 'btn btn-outline-danger', data: { confirm: '削除してよろしいですか？'} %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<%= link_to t('helpers.link.overview'), tasks_path,class: 'btn btn-outline-primary' %>

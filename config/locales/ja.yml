@@ -107,11 +107,15 @@ ja:
       month: 月
       year: 年
   shared:
+      login: ログインしました
+      update: 更新しました
+      add: ユーザー「%{@user.name}」を登録しました。
       links:
         task_back: 'タスク一覧画面に戻る'
   errors:
     format: "%{attribute}%{message}"
     messages:
+      occur: エラー発生
       login: ログインに失敗しました
       accepted: を受諾してください
       blank: を入力してください
@@ -150,23 +154,30 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+      complete: 登録完了
     link:
       do_dedline_sort: 終了期限ソート
       do_edit: タスクを編集する
       do_create: タスク作成
       do_detail: タスク詳細
+      user_overview: 利用者一覧
       overview: タスク一覧
+      admin_overview: 管理者専用
       detail: 詳細
       new: 新規作成
       edit: 編集
       delete: 削除
       login: ログイン
+      logout: ログアウト
+      sign_up: サインアップ
   heading:
       title: タイトル 
       content: 内容 
       expired_at: 終了期限
       status: ステータス
-      priority: 優先度
+      priority: 優先度　
+  message:
+      update: ユーザー情報が更新されました
   number:
     currency:
       format:
