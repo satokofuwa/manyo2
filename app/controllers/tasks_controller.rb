@@ -35,7 +35,7 @@ class TasksController < ApplicationController
     else
       'エラーが発生しました。'
     end
-redirect_to new_task_url
+    redirect_to new_task_url
   end 
 
   def update 
