@@ -5,21 +5,20 @@
   </a>
 </nav>
 <p><%= notice %></p>
-  <%= form_with model: @task, url:tasks_path, scope: :task, method: :get, local: true do |form| %>
-    <%= form.text_field :search %>
-    <%= form.select :status, Task.statuses.keys.to_a, {prompt: "選択してください"},class: "status-select"%>
-    <%= form.submit '検索',title:nil %>
-    <button type ="button" class ="btn btn-outline-primary">
-      <%= link_to t('heading.priority'), tasks_path(priority_sort: "true") %>
-    </button>
-    <button type ="button" class ="btn btn-outline-primary">
-      <%= link_to t('heading.expired_at'), tasks_path(expired_sort: "true") %>
-    </button>
-    <button type ="button" class ="btn btn-outline-primary">
-    <%= link_to '新規作成',new_task_path%>
-    </button>
-  <% end %>  
 
+ <div class="left-contents col-md-10">
+        <%= form_with model: @task, url:tasks_path, scope: :task, method: :get, local: true do |form| %>
+          <%= form.text_field :search,id: '検索' %> 
+          <%= form.select :status, Task.statuses.keys.to_a, {prompt: "選択してください"},class: "status-select"%>
+            <button type="button" class="btn btn-outline-primary"><%= link_to "優先度", tasks_path(priority_sort: "true"), id: '優先度' %></button> 
+            <button type="button" class="btn btn-outline-primary"><%= link_to "終了期限", tasks_path(sort_expired: "true",id: 'ソート' ) %></button>
+            <button type="button" class="btn btn-outline-primary"><%= link_to '新規作成',new_task_path%></button>
+            <%= form.select :label_ids, Label.all.collect{|label| [label.label_name, label.id ] }%>
+              <%= form.submit '検索',title: nil %>
+        <% end %> 
+    </div> 
+
+        
 <table class="table table-sm">
   <thead class="thead-light">
     <tr>
@@ -28,6 +27,7 @@
       <th scope="col"><%= t('heading.expired_at') %></th>
       <th scope="col"><%= t('heading.status') %></th>
       <th scope="col"><%= t('heading.priority') %></th>
+      <th scope="col"><%= t('heading.label') %></th>
     </tr>
   </thead>
   <tbody>
@@ -38,6 +38,10 @@
         <td><%= task.expired_at %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
+        <td><% task.labels.each do |label| %>
+              <%= label.label_name %>
+            <% end %>   
+        </td>
         <td><%= link_to t('helpers.link.detail'), task_path(task.id), class: 'btn btn-outline-primary' %></td>
         <td><%= link_to t('helpers.link.new'), new_task_path, class: 'btn btn-outline-primary' %></td>
         <td><%= link_to t('helpers.link.edit'), edit_task_path(task.id), class: 'btn btn-outline-success' %></td>

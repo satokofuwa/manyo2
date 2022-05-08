@@ -16,11 +16,14 @@ class UsersController < ApplicationController
   end
 
   def update 
-    if @user.update(user_params)
-      t('message.update')
-    end
+    @user = User.find(params[:id])
+    redirect_to tasks_url
+    flash[:notice] = if @user.update(user_params)
+                       t('message.update')
+                     else
+                       '管理者一人の為更新できません'
+                     end
   end
-
 
   def show
     @tasks = Task.where(user_id: @user.id)
@@ -39,7 +42,4 @@ class UsersController < ApplicationController
   def check_user
     redirect_to tasks_path, notice: '管理者以外はアクセスできません' if @user.id != current_user.id
   end
-
- 
-  
 end

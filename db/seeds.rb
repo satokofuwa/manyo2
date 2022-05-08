@@ -37,3 +37,10 @@ end
     user_id: user_id
   )
 end
+
+10.times do |num|
+  Label.create!(
+    id: num,
+    label_name: "label#{num}"
+  )
+end
